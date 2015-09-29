@@ -1,0 +1,17 @@
+{
+  "name": "dynasty-dynamo",
+  "version": "0.0.1",
+  "description": "A DynamoDB Local + DynastyJS client example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dynasty": "^0.2.1"
+  },
+  "devDependencies": {
+    "local-dynamo": "^0.1.2"
+  }
+}
