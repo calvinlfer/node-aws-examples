@@ -11,6 +11,7 @@ let credentials = {
     secretAccessKey: 'Ignored'
 };
 
+//Point Dynasty (DynamoDB client) to our localhost instance
 let dynasty = require('dynasty')(credentials, 'http://localhost:8080');
 
 let createTable = dynasty.create(
