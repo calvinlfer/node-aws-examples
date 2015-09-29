@@ -3,6 +3,7 @@ let localDynamo = require('local-dynamo');
 
 // Run dynamoDB local on port 8080
 localDynamo.launch('./database', 8080);
+//could probably make this better using techniques here: 
 //https://github.com/Medium/dynamite/blob/master/test/utils/testUtils.js#L42
 
 let credentials = {
