@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "A simple example demonstrating that we can programatically manage Amazon's IAM through the Node.JS SDK",
   "dependencies": {
-    "aws-sdk": "^2.2.1",
+    "aws-sdk": "^2.19.0",
+    "fs-extra": "^1.0.0",
     "lodash": "^3.10.1"
   }
 }
