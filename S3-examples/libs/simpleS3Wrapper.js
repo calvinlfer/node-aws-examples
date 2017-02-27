@@ -16,7 +16,7 @@ let MAX_KEYS = 1000;
  * Wrapper on top of the AWS SDK to create a bucket in the region you specify in your config.json file
  * @param s3 an AWS.S3 object
  * @param bucketName the name of the bucket
- * @param callback  the callback to execute (2 arg) when the function completes
+ * @returns {Promise} a promise that resolves when the bucket has been created.
  *
  * @see http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#createBucket-property
  * @see http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-examples.html#Amazon_S3__Create_a_New_Bucket_and_Object__createBucket__upload_
@@ -40,7 +40,7 @@ function createBucket(s3, bucketName) {
  * Wrapper on top of the AWS SDK to delete a bucket in the region you specify in your config.json file
  * @param s3 an AWS.S3 object
  * @param bucketName the name of the bucket to be deleted
- * @param callback  the callback to execute (2 arg) when the function completes
+ * @returns {Promise} a promise that resolves when the bucket has been deleted.
  *
  * @see http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#deleteBucket-property
  */
@@ -164,14 +164,14 @@ function readValueAsFileIdentifiedWithKeyFromBucket(s3, key, filePath, bucket) {
  * A wrapper for listing keys that does accumulation of paged data so you don't have to worry about it
  * @param s3 an AWS.S3 object
  * @param params object to configure the request with (similar format to how you make a real S3 request)
- * @param callback the callback in which the all the keys will be provided to you
+ * @returns {Promise} a promise that resolves when the keys have been retrieved.
  */
 function listKeys(s3, params) {
     return new Promise((resolve, reject) => {
         let keys = [];
 
         /**
-         * Recursively list keys and use the keys, params and callback as a closure
+         * Recursively list keys and use the keys and params as a closure
          */
         function recursivelyListKeys(marker) {
             params.marker = marker;
@@ -198,9 +198,10 @@ function listKeys(s3, params) {
 }
 
 /**
- * Does a paginated list keys request and passes marker information for the next page to the callback
+ * Does a paginated list keys request and passes marker information for the next page to the resolve
  * @param s3 an AWS.S3 object
  * @param options these are the parameters to configure the request
+ * @returns {Promise} a promise that resolves when the key page has been listed.
  */
 function listKeyPage(s3, options) {
     return new Promise((resolve, reject) => {
